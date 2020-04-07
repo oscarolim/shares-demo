@@ -7,7 +7,114 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root
+{
+  background-color: #efefef;
+  max-width: 360px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.share
+{
+  background-color: bisque;
+  overflow: hidden;
+  display: block;
+  padding: 10px;
+  margin: 10px;
+}
+
+.name
+{
+  font-weight: 600;
+  font-size: 1em;
+  float: left;
+}
+
+.progressBar
+{
+  border: 1px solid #333;
+  position: relative;
+  overflow: hidden;
+  line-height: 2em;
+  margin-top: 5px;
+  display: block;
+  float: left;
+  height: 2em;
+  width: 100%;
+}
+
+.progressBar .pbValue
+{
+  background-color: #333;
+  position: absolute;
+  line-height: 1.2em;
+  font-size: 0.8em;
+  margin: 0 auto;
+  color: #fff;
+  padding: 5px;
+  width: 30px;
+  top: 0.2em;
+  z-index: 2;
+  right: 0;
+  left: 0;
+}
+
+.progressBar .pbProgressBarContainer
+{
+  height: 100%;
+  width: 50%;
+}
+
+.progressBar .pbProgressBar
+{
+  transition: width 0.7s ease-in-out;
+  height: 100%;
+}
+
+.progressBar .pbProgressBarGreen
+{
+  margin-left: 50%;
+}
+
+.progressBar .pbProgressBarRed .pbProgressBar
+{
+  background-color: maroon;
+  float: right;
+}
+
+.progressBar .pbProgressBarGreen .pbProgressBar
+{
+  background-color: greenyellow;
+}
+
+.progressBar button
+{
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  top: 0;
+}
+
+.disclaimer
+{
+  padding: 20px 20px 0 20px;
+  background-color: #333;
+  margin: 20px auto 0;
+  max-width: 360px;
+  overflow: hidden;
+}
+
+.disclaimer p
+{
+  margin: 0 0 20px 0;
+  line-height: 1.2em;
+  font-size: 1em;
+  color: #fff;
+}
+
+.disclaimer p a
+{
+  text-decoration: underline;
+  color: #fff;
 }
