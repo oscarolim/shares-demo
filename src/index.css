@@ -15,13 +15,34 @@ body {
   margin: 0 auto;
 }
 
+.gameinfo
+{
+  background-color: #333;
+  text-align: right;
+  padding: 10px;
+  color: #fff;
+}
+
+.gameinfo .credits
+{
+  color: greenyellow;
+}
+
 .share
 {
-  background-color: bisque;
+  position: relative;
   overflow: hidden;
   display: block;
   padding: 10px;
   margin: 10px;
+  height: 3em;
+}
+
+.share svg
+{
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .name
@@ -29,6 +50,32 @@ body {
   font-weight: 600;
   font-size: 1em;
   float: left;
+}
+
+.info
+{
+  position: absolute;
+  font-weight: 600;
+  font-size: 0.8em;
+  left: 20px;
+  top: 42px;
+}
+
+.buy
+{
+  background-color: midnightblue;
+  display: inline-block;
+  position: absolute;
+  text-align: right;
+  user-select: none;
+  font-weight: 600;
+  font-size: 0.8em;
+  cursor: pointer;
+  color: #fff;
+  padding: 5px;
+  right: 15px;
+  z-index: 2;
+  top: 38px;
 }
 
 .progressBar
@@ -63,24 +110,14 @@ body {
 .progressBar .pbProgressBarContainer
 {
   height: 100%;
-  width: 50%;
+  width: 100%;
 }
 
 .progressBar .pbProgressBar
 {
-  transition: width 0.7s ease-in-out;
+  transition: width 0.1s linear;
   height: 100%;
-}
-
-.progressBar .pbProgressBarGreen
-{
-  margin-left: 50%;
-}
-
-.progressBar .pbProgressBarRed .pbProgressBar
-{
-  background-color: maroon;
-  float: right;
+  width: 0px;
 }
 
 .progressBar .pbProgressBarGreen .pbProgressBar
@@ -117,4 +154,8 @@ body {
 {
   text-decoration: underline;
   color: #fff;
+}
+
+@keyframes draw {
+  to { stroke-dashoffset: 0 };
 }

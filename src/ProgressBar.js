@@ -1,31 +1,41 @@
 import React from 'react';
-import Toggle from './Toggle';
 
 class ProgressBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {price: props.start};
-        this.active = true;
+        this.companyIndex = props.companyIndex;
+        this.state = {progress: 0};
     }
 
-    updatePrice = () => {
-        if(!this.active)
-            return;
-        let newPrice = Math.floor(Math.random() * 201) - 100;
-        this.setState({
-            price: this.state.price === 0 || Math.sign(newPrice) === Math.sign(this.state.price) ? newPrice : 0
-        });
+    updateProgress = () => {
+        if(this.state.progress + 1 > global.game.companies[this.companyIndex].timer * 10)
+        {
+            this.props.progressCompletedCallback();
+            this.setState({progress: 0});
+        }
+        else
+            this.setState({progress: this.state.progress + 1});
     };
 
-    updateActiveStatus = (active) => {
-        this.active = active;
+    componentDidUpdate(prevProps, prevState, snapshot)
+    {
+        if(this.state.progress === 0)
+        {
+            clearInterval(this.timerID);
+            setTimeout(
+                () => {
+                    clearInterval(this.timerID);
+                    this.timerID = setInterval(
+                        () => this.updateProgress(),
+                        100
+                    );
+                }, 200
+            )
+        }
     }
     
     componentDidMount() {
-        this.timerID = setInterval(
-            () => this.updatePrice(),
-            Math.floor(Math.random() * 1001) + 1000
-          );
+        clearInterval(this.timerID);
     }
     
     componentWillUnmount() {
@@ -33,14 +43,12 @@ class ProgressBar extends React.Component {
     }
 
     render() {
-        let percentage = Math.abs(this.state.price) + '%';
-        let colorClass = this.state.price >= 0 ? 'pbProgressBarGreen' : 'pbProgressBarRed';
+        let percentage = Math.ceil(this.state.progress / (global.game.companies[this.companyIndex].timer * 10) * 100) + '%';
+        let colorClass = 'pbProgressBarGreen';
         return <div className="progressBar">
-                    <span className="pbValue">{this.state.price}</span>
                     <div className={colorClass + " pbProgressBarContainer"}>
                         <div className="pbProgressBar" style={{width : percentage}} />
                     </div>
-                    <Toggle state={true} onToggle={this.updateActiveStatus} />
                 </div>
     }
 }
