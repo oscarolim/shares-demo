@@ -5,11 +5,12 @@ class Companies extends React.Component {
   render() {
     return (
       <div>
-        {this.props.companies.map((company, index) => (
+        {this.props.companies.map((company) => (
           <Company
-            name={company.name}
-            companyIndex={index}
-            key={company.name.toString()}
+            company={company}
+            key={company.id}
+            onBuyCompany={this.props.onBuyCompany}
+            onProgressCompleted={this.props.onProgressCompleted}
           />
         ))}
       </div>
